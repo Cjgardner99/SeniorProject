@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='SeniorProj.css')}}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <a href="{{ url_for('homePage') }}">Home</a>&nbsp;&nbsp;<a href="{{ url_for('Login') }}" style="float: top">Login</a>&nbsp;&nbsp;<a href="{{ url_for('createAccount') }}">Create Account</a>&nbsp;&nbsp;<a href="{{ url_for('myAccount') }}">My Account</a>
+
+</div>
+    <div id ="questions" class="center">
+
+
+
+    </div>
+
+    <br><br>
+    <div id="buttons" class="center">
+        <label>Right</label>
+        <input type="radio" id ="right" name="option" value="right"><br>
+        <label>Left</label>
+        &nbsp;&nbsp;<input type="radio" id="left" name="option" value="left"><br><br>
+        <button id="check" class="on">Check</button>&nbsp;&nbsp;<button id="next" class="off">Next Question</button>
+
+    </div>
+    <br>
+    <div id="test" class="center">
+
+    </div>
+<script>
+    var nextQ = document.getElementById("next");
+    var bigPart = document.getElementById("questions");
+    var test = document.getElementById("test");
+    var checka = document.getElementById("check");
+    var questions = [];
+    var equations = [];
+    var answers = [];
+
+    function removeQ(s) {
+        var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", " ", "(", ")", "↔", "+", "-"];
+        for (var i =0; i < 20; i++){
+            alphabet.push(i.toString());
+        }
+        var res = "";
+        for (var i = 0; i < s.length; i++) {
+            if ((alphabet.includes(s[i].toLowerCase())) && i >4  && i < s.length-3) {
+                res += s[i];
+            }
+        }
+        return res;
+    }
+
+
+
+    function dataToArray(){
+        questions = '{{ problems }}'.replace("[", '').replace("]", '').split(",");
+        equations = '{{ equations }}'.replace("[", '').replace("]", '').split(",");
+        answers = '{{ answers }}'.replace("[", '').replace("]", '').split(",");
+    }
+
+    dataToArray();
+    var rand = (Math.floor((Math.random() * questions.length) + 1))-1;
+    bigPart.innerHTML = removeQ(questions[rand])+"<br><br>" + removeQ(equations[rand]);
+
+    checka.addEventListener('click', function (){
+        var userans = document.querySelector('input[name="option"]:checked').value;
+        if (userans ==  removeQ(answers[rand])){
+            test.innerHTML = "correct";
+        }
+        else {
+            test.innerHTML = "incorrect";
+        }
+        test.innerHTML +="<br>"+userans + " " + removeQ(answers[rand]);
+        nextQ.className="on";
+    });
+
+    nextQ.addEventListener("click", function (){
+        questions.splice(rand, 1);
+        answers.splice(rand, 1);
+        equations.splice(rand, 1);
+        if (questions.length == 0) {
+            nextQ.className="off";
+            checka.className="off";
+        }
+        else{
+            rand = (Math.floor((Math.random() * questions.length) + 1))-1;
+            bigPart.innerHTML = removeQ(questions[rand])+"<br><br>" + removeQ(equations[rand]);
+            nextQ.className="off"
+            document.getElementById('right').checked = false;
+            document.getElementById('left').checked = false;
+
+
+        }
+
+
+
+    });
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

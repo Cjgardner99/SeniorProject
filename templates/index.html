@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='SeniorProj.css')}}" rel="stylesheet" >
+</head>
+<body>
+<a href="{{ url_for('homePage') }}">Home</a>&nbsp;&nbsp;<a href="{{ url_for('Login') }}" style="float: top">Login</a>&nbsp;&nbsp;<a href="{{ url_for('createAccount') }}">Create Account</a>&nbsp;&nbsp;<a href="{{ url_for('myAccount') }}">My Account</a><br>
+<form action="/" method="POST" id="log">
+    <div id="login" class="on">
+        <span>Welcome to Le Chatliers Principle Quiz!!</span><br><br>
+        Username: <input type="text" id="username" name="uname"/><br><br>
+        Password: <input type="password" id="code" name = "pcode"/><br><br>
+        <input type="submit" id="toQuiz" value="Login"><br>
+        <span id="verify" class="off">Your login credentials are invalid</span>
+
+    </div>
+</form>
+
+<div id="Quiz" class="off">
+
+    <form></form>
+
+
+</div>
+
+
+<script>
+    verify = document.getElementById("verify");
+    var invalid = "{{ invalid }}";
+    if (invalid == "yes"){
+        verify.className="on"
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='SeniorProj.css')}}" rel="stylesheet">
+</head>
+<body>
+<div id="links">
+    <a href="{{ url_for('homePage') }}">Home</a>&nbsp;&nbsp;<a href="{{ url_for('Login') }}">Login</a>&nbsp;&nbsp;<a href="{{ url_for('createAccount') }}">Create Account</a>&nbsp;&nbsp;<a href="{{ url_for('myAccount') }}">My Account</a>
+</div>
+<form action="/createAccount" method="POST" id="create">
+    <div id="ca" style="text-align-all: center; text-align: center;">
+        <span id="instruct">Please enter the following information</span><br><br>
+        Please enter your first name: <input type="text" id="fname" name="fname"/><br><br>
+        Please enter your last name:&nbsp; <input type="text" id="lname" name="lname"/><br><br>
+        Please enter an email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="email" name="em"/><br><br>
+        Please enter a password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="cpasscode" name="cpass" placeholder="Must have 8 characters"/><br><br>
+        Please confirm password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" id="ccpasscode" name="ccpass" /><br><br>
+        <input type="submit" value="create account" id="button"/>
+        <br>
+        <div id="test">
+
+        </div>
+        <br>
+        <div id = "worked" class="off">
+            There was a problem processing your information
+        </div>
+
+    </div>
+
+
+</form>
+
+
+
+<script>
+    var fname = document.getElementById("fname");
+    var lname = document.getElementById("lname");
+    var email = document.getElementById("email");
+    var passcode = document.getElementById("cpasscode");
+    var test = document.getElementById("test");
+    var confirmPasscode = document.getElementById("ccpasscode");
+    var ogpassode = "";
+    passcode.addEventListener('focusout', function(event){
+        ogpassode = event.target.value;
+
+    });
+
+    confirmPasscode.addEventListener('focusout', function(event){
+       if ((event.target.value) != ogpassode){
+           test.innerHTML="Passwords do not match";
+
+        }
+       else{
+           test.innerHTML="";
+       }
+    });
+    valid = document.getElementById("worked");
+    var invalid = "{{ invalid }}";
+    if (invalid == "yes"){
+        valid.className="on"
+    }
+
+
+</script>
+</body>
+</html>

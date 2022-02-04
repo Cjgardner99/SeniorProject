@@ -1,0 +1,55 @@
+#login{
+    text-align: center;
+    text-align-all: center;
+}
+
+#log{
+    text-align: center;
+    text-align-all: center;
+
+}
+
+#toQuiz{
+    text-align: center;
+    text-align-all: center;
+}
+
+#welcoming{
+    text-align: center;
+    text-align-all: center;
+
+}
+
+#centering{
+    text-align: center;
+    text-align-all: center;
+}
+
+#Quiz{
+    text-align: center;
+    text-align-all: center;
+}
+
+.center{
+
+  text-align: center;
+
+}
+
+
+#dealQ{
+    text-align: center;
+    text-align-all: center;
+}
+
+#verify{
+    color: red;
+}
+
+#worked{
+    color: red;
+}
+
+.off{
+    visibility: hidden;
+}

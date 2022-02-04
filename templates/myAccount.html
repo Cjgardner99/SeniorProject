@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='SeniorProj.css')}}" rel="stylesheet">
+</head>
+<body>
+ <a href="{{ url_for('homePage') }}">Home</a>&nbsp;&nbsp;<a href="{{ url_for('Login') }}">Login</a>&nbsp;&nbsp;<a href="{{ url_for('createAccount') }}">Create Account</a>&nbsp;&nbsp;<a href="{{ url_for('myAccount') }}">My Account</a>
+    <div id="acc" style="text-align: center">
+        First Name:  &nbsp;<span id="aname">{{ name }}</span><br><br>
+        Last Name:  &nbsp;<span id="lname">{{ lname }}</span><br><br>
+        Your Email:  &nbsp;<span id="email">{{ email }}</span><br><br>
+        favorite Mode:  &nbsp;<span id="favmode">None</span><br><br>
+    </div>
+    <br>
+    <br>
+    <div id="progress" style="text-align: center">
+        Below is graph showing your progress:
+
+    </div>
+
+
+
+</body>
+</html>
